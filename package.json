@@ -1,0 +1,14 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "This blog allows users to create account, share best places to visit with photos and description and lets others to comment",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Veerendranath Korrapati",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
