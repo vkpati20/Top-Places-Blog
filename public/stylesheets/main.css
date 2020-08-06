@@ -1,7 +1,18 @@
 /* For all other pages except root page */
+/* new.ejs */
 .title{
     text-align: center;
 }
 .center{
     justify-content: center;
+}
+
+/* index.ejs    */
+
+.bar{
+    /* background-image: url('great-wall.jpg'); */
+    background-image: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url(great-wall.jpg);
+    height: 200px;
+    background-position: 0;
+    color: white;
 }

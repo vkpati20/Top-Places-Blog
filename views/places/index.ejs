@@ -1,4 +1,30 @@
 <!-- 
     Places
-    Initial route that displays all the existing places
+    Index route that displays all the existing places
 -->
+<%- include("../partials/header") %>
+<div class="bar">
+    <h3>Welcome to my Blogs website</h3>
+    <p>View best places in the world</p>
+    <p>
+        <a href="/places/new" class="btn btn-primary btn-lg">Add new place</a>
+    </p>
+
+</div>
+
+<div class="container">
+    <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+    <%places.forEach((place)=>{%>
+        <div class="col-md-3 col-sm-6" style="background: grey;"> 
+            <p>Name: <%= place.name %></p>
+            <p>Location: <%= place.location %></p>
+            <p>Image: <%= place.image %></p>
+            <p>Description: <%= place.description %></p>
+        </div>
+
+    <%})%>
+    
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

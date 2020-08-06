@@ -20,7 +20,14 @@ Disclaimer: all routes here have a prefix: /places. Look at app.js for more deta
 INDEX - show all places
 */
 router.get("/", (req, res)=>{
-    res.send("You are at /places route")
+    Place.find({}, (err, allPlaces)=>{
+        if(err){
+            console.log("Error occured when getting all places: " + err);
+        }
+        else{
+            res.render("places/index", {places: allPlaces});
+        }
+    })
 });
 
 /*
