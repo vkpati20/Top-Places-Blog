@@ -11,3 +11,4 @@ Views: To store all the .ejs files
 ## Dependencies
 express
 mongoose
+ejs
