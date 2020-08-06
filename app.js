@@ -5,8 +5,11 @@ const express = require("express");
 app = express();
 app.set("view engine", "ejs");
 
+//For stylesheets
+app.use(express.static(__dirname+"/public"))
+
 app.get("/", (req, res)=>{
-    res.send("Hello");
+    res.render("landing");
 });
 
 app.listen(3000, ()=>{

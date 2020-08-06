@@ -1,0 +1,17 @@
+Work on Landing page
+
+Work on header and footer
+
+---> Create a backup project because I'm dealing with database in next step
+
+
+Work on establishing a database, adding stuff to database and displaying it on the screen
+    ->Create a comment, and place sections in the database. -> not users
+Work on place form
+
+Work on /places route -> displays all places
+
+Work on comment route
+
+Work on comment 
+
