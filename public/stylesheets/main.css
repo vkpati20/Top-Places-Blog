@@ -1,1 +1,7 @@
 /* For all other pages except root page */
+.title{
+    text-align: center;
+}
+.center{
+    justify-content: center;
+}
