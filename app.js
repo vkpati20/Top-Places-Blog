@@ -27,23 +27,23 @@ mongoose.connect('mongodb://localhost:27017/places_blog_v1', {
 
 
 
-Place.create(
-    {
-        name: "Veeru",
-        location: "Plano",
-        displayImage: "https://image.png",
-        description: "This is description"
-    },
-    (err, place)=>{
-        if(err)
-            console.log("Error creating place: " + err);
-        else{
-            console.log("Created a new place");
-            console.log(place);
-        }
+// Place.create(
+//     {
+//         name: "Veeru",
+//         location: "Plano",
+//         displayImage: "https://image.png",
+//         description: "This is description"
+//     },
+//     (err, place)=>{
+//         if(err)
+//             console.log("Error creating place: " + err);
+//         else{
+//             console.log("Created a new place");
+//             console.log(place);
+//         }
 
-    }
-)
+//     }
+// )
 
 app.use(indexRoutes);
 app.use("/places", placeRoutes); //Since all placeRoutes start with /places, I'm sending the '/places' prefix to all the places routes

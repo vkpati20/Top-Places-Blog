@@ -1,5 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express'),
+      Place = require('../models/places');
+      router = express.Router(),
+
+
 /*
 Routes:
 Disclaimer: all routes here have a prefix: /places. Look at app.js for more details
@@ -13,8 +16,42 @@ Disclaimer: all routes here have a prefix: /places. Look at app.js for more deta
 
 */
 
+/*
+INDEX - show all places
+*/
 router.get("/", (req, res)=>{
     res.send("You are at /places route")
 });
+
+/*
+CREATE - add a new place to DB
+Takes a new input from form and adds to database.
+*/
+router.post("/", (req, res)=>{
+    //get data from form in new.ejs and add to places database
+    //redirect to places page
+    var place = {
+        name: req.body.name,
+        location: req.body.location,
+        image: req.body.image,
+        description: req.body.description
+    }
+    Place.create(place, (err, newPlace)=>{
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.redirect("/places");
+        }
+    })
+})
+
+
+/*
+NEW - show form to create new place
+*/
+router.get("/new", (req, res)=>{
+    res.render("places/new")
+})
 
 module.exports = router;
