@@ -1,5 +1,6 @@
 ## Stack
 HTML, CSS, JavaScript, Node.js, Express, Mongoose
+
 ## Foler Setup
 Middleware: To handle all the authentication logic
 Models: To define mongoose schema for Places, Users, and Comments
