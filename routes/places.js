@@ -1,3 +1,5 @@
+var express = require('express');
+var router = express.Router();
 /*
 Routes:
 Disclaimer: all routes here have a prefix: /places. Look at app.js for more details
@@ -10,3 +12,9 @@ Disclaimer: all routes here have a prefix: /places. Look at app.js for more deta
     Delete: /:id        :Deletes a place   
 
 */
+
+router.get("/", (req, res)=>{
+    res.send("You are at /places route")
+});
+
+module.exports = router;

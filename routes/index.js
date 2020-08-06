@@ -1,3 +1,6 @@
+var express = require('express');
+var router = express.Router();
+
 /*
 Routes:
     Get:    /               :Takes you to landing page  
@@ -8,3 +11,10 @@ Routes:
     Get:    /logout         :Takes you to logout route
 
 */
+
+//Landing page
+router.get("/", (req, res)=>{
+    res.render("landing");
+});
+
+module.exports = router;
