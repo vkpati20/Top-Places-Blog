@@ -40,7 +40,7 @@ router.post("/", (req, res)=>{
     var place = {
         name: req.body.name,
         location: req.body.location,
-        image: req.body.image,
+        displayImage: req.body.displayImage,
         description: req.body.description
     }
     Place.create(place, (err, newPlace)=>{
