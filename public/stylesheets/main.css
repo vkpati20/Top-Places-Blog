@@ -12,6 +12,7 @@
 .bar{
     /* background-image: url('great-wall.jpg'); */
     background-image: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url(great-wall.jpg);
+    background-attachment: fixed;
     height: 200px;
     background-position: 0;
     color: white;
