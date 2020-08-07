@@ -2,3 +2,14 @@
     Places
     Displays individual place with image, description, and comments
 -->
+
+<%- include("../partials/header") %>
+<div class="container">
+    <p>Name: <%=place.name%>/night</p>
+    <p>Location: <%=place.location%></p>
+    <p>Image: <%=place.displayImage%></p>
+    <p>Description: <%=place.description%></p>
+
+</div>
+
+<%- include("../partials/footer") %>

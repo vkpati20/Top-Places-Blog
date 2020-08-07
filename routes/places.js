@@ -62,3 +62,22 @@ router.get("/new", (req, res)=>{
 })
 
 module.exports = router;
+
+
+/*
+SHOW - shows more info about a specific place
+Displays information about each place
+*/
+router.get("/:id", (req, res)=>{
+    //find the place with provided mongo id (that was generated automatically) and render the information of that place
+    Place.findById(req.params.id, (err, foundPlace)=>{
+        if(err || !foundPlace){
+            console.log("Error! ", err);
+            res.redirect("back");
+        }
+        else{
+            res.render("places/show", {place: foundPlace});
+        }
+    })
+
+})
