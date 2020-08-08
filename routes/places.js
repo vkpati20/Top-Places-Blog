@@ -106,3 +106,17 @@ router.put("/:id", (req, res)=>{
         }
     })
 })
+
+
+
+router.delete("/:id", (req, res)=>{
+    Place.findByIdAndRemove(req.params.id, (err, removedPlace)=>{
+        if(err){
+            res.redirect("back");
+        }
+        else{
+            res.redirect("/places")
+            //delete comments associated with it.
+        }
+    })
+})

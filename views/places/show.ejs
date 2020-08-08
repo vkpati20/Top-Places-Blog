@@ -16,7 +16,10 @@
                             <p style="line-height: 1rem;"><em>Submitted by: <%=place.name%></em>, 10 days ago</p>
                         </div>
                         <p><%=place.description%></p>
-                        <a class="btn btn-sm btn-warning" href="/places/<%=place._id%>/edit">Edit</a>    
+                        <a class="btn btn-sm btn-warning" href="/places/<%=place._id%>/edit">Edit</a>  
+                        <form style="display: inline; margin-left: 10px;" action="/places/<%= place._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-sm btn-danger">Delete</button>
+                        </form>    
                     </div>
                 </figcaption>
             </div>
