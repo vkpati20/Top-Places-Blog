@@ -81,3 +81,28 @@ router.get("/:id", (req, res)=>{
     })
 
 })
+
+/*
+EDIT - edit existing place
+Takes you to edit form
+*/
+router.get("/:id/edit", (req, res)=>{
+    Place.findById(req.params.id, (err, foundPlace)=>{
+        res.render("places/edit", {place: foundPlace});
+    })
+})
+
+/*
+UPDATE - where the edit form submits to
+*/
+router.put("/:id", (req, res)=>{
+    //Find and update blog and redirect back to updated blog
+    Place.findByIdAndUpdate(req.params.id, req.body.place, (err, updatedPlace)=>{
+        if(err){
+            res.redirect("back");
+        }
+        else{
+            res.redirect("/places/" + req.params.id);        
+        }
+    })
+})

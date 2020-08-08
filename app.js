@@ -11,6 +11,7 @@ app = express();
 //Requiring routes
 const placeRoutes = require("./routes/places"),
       indexRoutes = require("./routes/index");
+      methodOverride = require("method-override")
 
 //To use files ending .ejs without specifying .ejs within routes
 app.set("view engine", "ejs");
@@ -24,27 +25,7 @@ mongoose.connect('mongodb://localhost:27017/places_blog_v1', {
     .then(()=>console.log("Connected to DB"))
     .catch(error=>console.log("Error connecting to DB: " + error.message));
 
-
-
-
-// Place.create(
-//     {
-//         name: "Veeru",
-//         location: "Plano",
-//         displayImage: "https://image.png",
-//         description: "This is description"
-//     },
-//     (err, place)=>{
-//         if(err)
-//             console.log("Error creating place: " + err);
-//         else{
-//             console.log("Created a new place");
-//             console.log(place);
-//         }
-
-//     }
-// )
-
+app.use(methodOverride("_method"));
 app.use(indexRoutes);
 app.use("/places", placeRoutes); //Since all placeRoutes start with /places, I'm sending the '/places' prefix to all the places routes
 

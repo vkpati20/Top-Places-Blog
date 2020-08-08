@@ -5,11 +5,23 @@
 
 <%- include("../partials/header") %>
 <div class="container">
-    <p>Name: <%=place.name%>/night</p>
-    <p>Location: <%=place.location%></p>
-    <p>Image: <%=place.displayImage%></p>
-    <p>Description: <%=place.description%></p>
-
+    <div class="row">
+        <div class="col-md-9">
+            <div class="card" style="margin: 25px auto">
+                <img class="figure-img img-fluid" src="<%=place.displayImage%>" alt="<%=place.location%>">
+                <figcaption class="figure-caption">
+                    <div class="container" style="margin-bottom: 10px">
+                        <div style="display: flex; justify-content: space-between;">
+                            <h4><%=place.location%></h4>
+                            <p style="line-height: 1rem;"><em>Submitted by: <%=place.name%></em>, 10 days ago</p>
+                        </div>
+                        <p><%=place.description%></p>
+                        <a class="btn btn-sm btn-warning" href="/places/<%=place._id%>/edit">Edit</a>    
+                    </div>
+                </figcaption>
+            </div>
+        </div>
+    </div>
 </div>
 
 <%- include("../partials/footer") %>
