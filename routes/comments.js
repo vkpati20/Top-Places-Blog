@@ -15,12 +15,13 @@ var express = require('express');
 var router = express.Router({mergeParams: true});
 var Place = require("../models/places")
 var Comment = require("../models/comments")
+var middleware = require('../middleware');
 
 
 /*
 NEW - renders comment form
 */
-router.get("/new", (req, res)=>{
+router.get("/new", middleware.isLoggedIn, (req, res)=>{
     Place.findById(req.params.id, (err, place)=>{
         if(err){
             console.log(err);
@@ -35,7 +36,7 @@ router.get("/new", (req, res)=>{
 /*
 CREATE - route where comment form is submitted to 
 */
-router.post("/", (req, res)=>{
+router.post("/", middleware.isLoggedIn, (req, res)=>{
     //Looking up the current place in database
     Place.findById(req.params.id, (err, place)=>{
         if(err){
@@ -67,6 +68,8 @@ router.post("/", (req, res)=>{
         }
     })
 })
+
+
 
 
 module.exports = router;
