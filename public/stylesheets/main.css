@@ -17,3 +17,35 @@
     background-position: 0;
     color: white;
 }
+
+/* Comments */
+.comment{
+    margin-bottom: 30px;
+}
+.comment-section{
+    margin-bottom: 20px;
+
+}
+.comment-container p{
+    margin-bottom: 0;
+}
+
+.comment-container{
+    background: #e2e2e2;
+    padding: 20px 20px;
+}
+
+.comment-buttons{
+    display: flex;
+}
+
+.comment-buttons .edit-btn{
+    color: orange;
+    margin-right: 20px;
+}
+
+.comment-buttons .delete-btn{
+    color: red; 
+    padding: 0; 
+    border: none;
+}
