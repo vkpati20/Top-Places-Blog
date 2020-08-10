@@ -1,6 +1,8 @@
 const express = require('express'),
-      Place = require('../models/places');
+      Place = require('../models/places'),
       router = express.Router(),
+      Comment = require('../models/comments');
+
 
 
 /*
@@ -64,7 +66,6 @@ router.get("/new", (req, res)=>{
     res.render("places/new")
 })
 
-module.exports = router;
 
 
 /*
@@ -73,7 +74,7 @@ Displays information about each place
 */
 router.get("/:id", (req, res)=>{
     //find the place with provided mongo id (that was generated automatically) and render the information of that place
-    Place.findById(req.params.id, (err, foundPlace)=>{
+    Place.findById(req.params.id).populate("comments").exec((err, foundPlace)=>{
         if(err || !foundPlace){
             console.log("Error! ", err);
             res.redirect("back");
@@ -123,3 +124,6 @@ router.delete("/:id", (req, res)=>{
         }
     })
 })
+
+
+module.exports = router;

@@ -7,13 +7,15 @@ const express = require("express"),
 //Requiring models for Database
 const Place = require("./models/places");
       User = require("./models/users");
+      Comment = require("./models/comments");
 
 app = express();
 
 //Requiring routes
 const placeRoutes = require("./routes/places"),
-      indexRoutes = require("./routes/index");
-      methodOverride = require("method-override")
+      indexRoutes = require("./routes/index"),
+      commentRoutes = require("./routes/comments"),
+      methodOverride = require("method-override");
 
 
 
@@ -50,6 +52,7 @@ app.use((req, res, next)=>{
 app.use(methodOverride("_method"));
 app.use(indexRoutes);
 app.use("/places", placeRoutes); //Since all placeRoutes start with /places, I'm sending the '/places' prefix to all the places routes
+app.use('/places/:id/comments', commentRoutes); //Since all comments start with /places/:id/comments(because they are attatched to a specific place), I'm sending the it as a prefix to all the comments routes
 
 app.get("/", (req, res)=>{
     res.render("landing");
