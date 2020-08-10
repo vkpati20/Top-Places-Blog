@@ -25,7 +25,7 @@ middlewareObj.checkPlaceOwnership = function(req, res, next){
         })
     }
     else{ //if the user is not logged in
-        console.log(err);
+        console.log("error with user not logged in");
         res.redirect("back");
     }
 }
@@ -39,6 +39,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
                 res.redirect("back");
             }
             else{
+                //does user own the campground?
                 if(foundComment.user.id.equals(req.user._id)){
                     next();
                 }
@@ -50,7 +51,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
         });
     }
     else{
-        console.log(err);
+        console.log("error with user not logged in");
         res.redirect("back")
     }
 }

@@ -1,7 +1,8 @@
 const express = require('express'),
       Place = require('../models/places'),
       router = express.Router(),
-      Comment = require('../models/comments');
+      Comment = require('../models/comments'),
+      middleware = require('../middleware');
 
 
 
@@ -33,10 +34,17 @@ router.get("/", (req, res)=>{
 });
 
 /*
+NEW - show form to create new place
+*/
+router.get("/new", middleware.isLoggedIn, (req, res)=>{
+    res.render("places/new")
+});
+
+/*
 CREATE - add a new place to DB
 Takes a new input from form and adds to database.
 */
-router.post("/", (req, res)=>{
+router.post("/", middleware.isLoggedIn, (req, res)=>{
     //get data from form in new.ejs and add to places database
     //redirect to places page
     var place = {
@@ -56,16 +64,7 @@ router.post("/", (req, res)=>{
             res.redirect("/places");
         }
     })
-})
-
-
-/*
-NEW - show form to create new place
-*/
-router.get("/new", (req, res)=>{
-    res.render("places/new")
-})
-
+});
 
 
 /*
@@ -90,7 +89,7 @@ router.get("/:id", (req, res)=>{
 EDIT - edit existing place
 Takes you to edit form
 */
-router.get("/:id/edit", (req, res)=>{
+router.get("/:id/edit", middleware.checkPlaceOwnership, (req, res)=>{
     Place.findById(req.params.id, (err, foundPlace)=>{
         res.render("places/edit", {place: foundPlace});
     })
@@ -99,7 +98,7 @@ router.get("/:id/edit", (req, res)=>{
 /*
 UPDATE - where the edit form submits to
 */
-router.put("/:id", (req, res)=>{
+router.put("/:id", middleware.checkPlaceOwnership, (req, res)=>{
     //Find and update blog and redirect back to updated blog
     Place.findByIdAndUpdate(req.params.id, req.body.place, (err, updatedPlace)=>{
         if(err){
@@ -113,7 +112,7 @@ router.put("/:id", (req, res)=>{
 
 
 
-router.delete("/:id", (req, res)=>{
+router.delete("/:id", middleware.checkPlaceOwnership, (req, res)=>{
     Place.findByIdAndRemove(req.params.id, (err, removedPlace)=>{
         if(err){
             res.redirect("back");
