@@ -13,7 +13,7 @@
                     <div class="container" style="margin-bottom: 10px">
                         <div style="display: flex; justify-content: space-between;">
                             <h4><%=place.location%></h4>
-                            <p style="line-height: 1rem;"><em>Submitted by: <%=place.name%></em>, 10 days ago</p>
+                            <p style="line-height: 1rem;"><em>Submitted by: <%=place.user.username%></em>, 10 days ago</p>
                         </div>
                         <p><%=place.description%></p>
                         <a class="btn btn-sm btn-warning" href="/places/<%=place._id%>/edit">Edit</a>  

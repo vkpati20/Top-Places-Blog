@@ -11,7 +11,13 @@ var mongoose = require("mongoose");
         comments (linked using users' mongoose id)
 */
 var placeSchema = new mongoose.Schema({
-    name: String,
+    user:{
+        id:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+        username: String
+    },
     location: String,
     displayImage: String,
     description: String

@@ -38,7 +38,10 @@ router.post("/", (req, res)=>{
     //get data from form in new.ejs and add to places database
     //redirect to places page
     var place = {
-        name: req.body.name,
+        user: {
+            id: req.user._id,
+            username: req.user.username
+        },
         location: req.body.location,
         displayImage: req.body.displayImage,
         description: req.body.description
