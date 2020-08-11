@@ -16,10 +16,14 @@
                             <p style="line-height: 1rem;"><em>Submitted by: <%=place.user.username%></em>, 10 days ago</p>
                         </div>
                         <p><%=place.description%></p>
-                        <a class="btn btn-sm btn-warning" href="/places/<%=place._id%>/edit">Edit</a>  
-                        <form style="display: inline; margin-left: 10px;" action="/places/<%= place._id %>?_method=DELETE" method="POST">
-                            <button class="btn btn-sm btn-danger">Delete</button>
-                        </form>    
+                        <!-- Only shows edit and delete buttons for the user who created the place -->
+                        <% if(currentUser && place.user.id.equals(currentUser._id)) {%>     
+                            <a class="btn btn-sm btn-warning" href="/places/<%=place._id%>/edit">Edit</a>  
+                            <form style="display: inline; margin-left: 10px;" action="/places/<%= place._id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-sm btn-danger">Delete</button>
+                            </form>    
+                        <%}%>     
+
                     </div>
                 </figcaption>
             </div>
