@@ -1,0 +1,5 @@
+Root Admin
+Fix navbar dropdown when on spall screen size
+Styling all pages
+Code organization
+Adding Comments

@@ -1,4 +1,12 @@
 /* For all other pages except root page */
+
+/* header.ejs */
+.error-message{
+    position: absolute;
+    right: 0;
+    opacity: .8;
+}
+
 /* new.ejs */
 .title{
     text-align: center;

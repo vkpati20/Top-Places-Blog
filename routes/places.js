@@ -58,9 +58,12 @@ router.post("/", middleware.isLoggedIn, (req, res)=>{
     }
     Place.create(place, (err, newPlace)=>{
         if(err){
-            console.log(err);
+            req.flash('error', 'Error occured while submitting the form');
+            res.redirect("/places");
         }
         else{
+            req.flash('success', 'Successfully created a new place');
+
             res.redirect("/places");
         }
     })
@@ -75,7 +78,7 @@ router.get("/:id", (req, res)=>{
     //find the place with provided mongo id (that was generated automatically) and render the information of that place
     Place.findById(req.params.id).populate("comments").exec((err, foundPlace)=>{
         if(err || !foundPlace){
-            console.log("Error! ", err);
+            req.flash('error', 'Place not found');
             res.redirect("back");
         }
         else{
@@ -102,9 +105,11 @@ router.put("/:id", middleware.checkPlaceOwnership, (req, res)=>{
     //Find and update blog and redirect back to updated blog
     Place.findByIdAndUpdate(req.params.id, req.body.place, (err, updatedPlace)=>{
         if(err){
+            req.flash('error', 'Error occured while submitting the form');
             res.redirect("back");
         }
         else{
+            req.flash('success', 'Successfully updated the place');
             res.redirect("/places/" + req.params.id);        
         }
     })
@@ -115,9 +120,11 @@ router.put("/:id", middleware.checkPlaceOwnership, (req, res)=>{
 router.delete("/:id", middleware.checkPlaceOwnership, (req, res)=>{
     Place.findByIdAndRemove(req.params.id, (err, removedPlace)=>{
         if(err){
+            req.flash('error', 'Error occured while deleting the place');
             res.redirect("back");
         }
         else{
+            req.flash('success', 'Successfully deleted the place');
             res.redirect("/places")
             //delete comments associated with it.
         }

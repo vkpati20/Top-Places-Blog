@@ -9,7 +9,7 @@ middlewareObj.checkPlaceOwnership = function(req, res, next){
     if(req.isAuthenticated()){
         Place.findById(req.params.id, (err, foundPlace)=>{
             if(err || !foundPlace){
-                console.log(err);
+                req.flash("error", "Place not found");
                 res.redirect("back");
             }
             else{
@@ -18,14 +18,14 @@ middlewareObj.checkPlaceOwnership = function(req, res, next){
                     next();
                 }
                 else{
-                    console.log(err);
+                    req.flash("error", "You don't have permission to do that");
                     res.redirect("back")
                 }
             }
         })
     }
     else{ //if the user is not logged in
-        console.log("error with user not logged in");
+        req.flash("error", "You need to be logged in");
         res.redirect("back");
     }
 }
@@ -35,7 +35,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
     if(req.isAuthenticated()){
         Comment.findById(req.params.comment_id, (err, foundComment)=>{
             if(err || !foundComment){
-                console.log(err);
+                req.flash("error", "Comment not found");
                 res.redirect("back");
             }
             else{
@@ -44,14 +44,14 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
                     next();
                 }
                 else{
-                    console.log(err);
+                    req.flash("error", "You don't have permission to do that");
                     res.redirect("back");
                 }
             }
         });
     }
     else{
-        console.log("error with user not logged in");
+        req.flash("error", "You need to be logged in");
         res.redirect("back")
     }
 }
@@ -61,7 +61,7 @@ middlewareObj.isLoggedIn = function(req, res, next){
         next();
     }
     else{
-        console.log("Error, you need to be logged in");
+        req.flash("error", "You need to be logged in"); 
         res.redirect("/login");
     }
 }

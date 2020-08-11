@@ -2,7 +2,9 @@ const express = require("express"),
       bodyParser = require("body-parser"),
       mongoose = require("mongoose"),
       passport = require("passport"),
-      PassportLocal = require("passport-local");
+      PassportLocal = require("passport-local"),
+      methodOverride = require("method-override"),
+      flash = require("connect-flash");
 
 //Requiring models for Database
 const Place = require("./models/places");
@@ -14,8 +16,7 @@ app = express();
 //Requiring routes
 const placeRoutes = require("./routes/places"),
       indexRoutes = require("./routes/index"),
-      commentRoutes = require("./routes/comments"),
-      methodOverride = require("method-override");
+      commentRoutes = require("./routes/comments");
 
 
 
@@ -37,6 +38,7 @@ app.use(require("express-session")({
     resave: false,
     saveUninitialized: false
 }))
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new PassportLocal(User.authenticate()));
@@ -46,10 +48,13 @@ passport.deserializeUser(User.deserializeUser());
     //allows us to access current user to all of our templates 
 app.use((req, res, next)=>{
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
 });
 
 app.use(methodOverride("_method"));
+
 app.use(indexRoutes);
 app.use("/places", placeRoutes); //Since all placeRoutes start with /places, I'm sending the '/places' prefix to all the places routes
 app.use('/places/:id/comments', commentRoutes); //Since all comments start with /places/:id/comments(because they are attatched to a specific place), I'm sending the it as a prefix to all the comments routes

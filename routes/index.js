@@ -33,10 +33,11 @@ router.post("/register", (req, res)=>{
     User.register(newUser, req.body.password, (err, user)=>{
         if(err)
         {
-            console.log(err)
+            req.flash("error", err.message);
             return res.redirect("register");
         }
         passport.authenticate("local")(req, res, ()=>{
+            req.flash("success", "Welcome to the Blog " + user.username);
             res.redirect("/places")
         })
     })
@@ -57,6 +58,7 @@ router.post("/login",passport.authenticate("local", {
 //logout route
 router.get("/logout", (req, res)=>{
     req.logout();
+    req.flash('success', "Logged you out");
     res.redirect("/places");
 })
 
