@@ -40,12 +40,17 @@
                                 <strong><%=comment.user.username%></strong>
                                 <span class="text-right">5 days ago</span>
                                 <p><%=comment.text%></p>
-                                <div class="comment-buttons">
-                                    <a class="edit-btn" href="/places/<%=place._id%>/comments/<%=comment._id%>/edit">Edit</a>
-                                    <form class="delete-form" action="/places/<%=place._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
-                                        <input type="submit" class="delete-btn" value="Delete">
-                                    </form>
-                                </div>
+
+                            <!-- Only shows edit and delete buttons for the user who created the comment -->
+                                <% if(currentUser && comment.user.id.equals(currentUser._id)) {%> 
+                                    <div class="comment-buttons">
+                                        <a class="edit-btn" href="/places/<%=place._id%>/comments/<%=comment._id%>/edit">Edit</a>
+                                        <form class="delete-form" action="/places/<%=place._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                                            <input type="submit" class="delete-btn" value="Delete">
+                                        </form>
+                                    </div>
+                                <%}%>     
+
                             </div>
                         </div>
                     </div>
