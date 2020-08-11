@@ -1,5 +1,12 @@
 /* For all other pages except root page */
 
+/* index.ejs*/
+.layout{
+    padding-top: 1.5rem;
+    background: #d6d6d6;
+}
+
+
 /* header.ejs */
 .error-message{
     position: absolute;
