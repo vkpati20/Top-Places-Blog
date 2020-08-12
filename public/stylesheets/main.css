@@ -19,7 +19,7 @@
 }
 
 .new-place .contents{
-    background: #1d2023;
+    background:rgb(37 37 37 / 90%);
     max-width: 55vw;
     margin: auto;
     box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.65);
