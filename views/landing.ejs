@@ -7,47 +7,20 @@
 	</head>
 	<body>
         <div class="bg">
+            <div class="heading">
+                <h1>Welcome to my blogs website</h1>
+            </div>
             <div class="bar">
                 <div class="git-btn">
-                    <button onclick="location.href='https://github.com/vkpati20'" type="button" class="btn btn-success">
+                    <button onclick="location.href='https://github.com/vkpati20'" type="button" class="btn btn-success btn-lg">
                         <i class="fa fa-github"></i>
                         See on Github
                     </button>
                 </div>
                 <div class="blog-btn">
-                    <button onclick="location.href='/places'" type="button" class="btn btn-primary">Take me to blog</button>
+                    <button onclick="location.href='/places'" type="button" class="btn btn-primary btn-lg">Take me to blog</button>
                 </div>
             </div>
-            <div class="form">
-                <form class = "register-form">
-                    <input type="text" placeholder="Username">
-                    <input type="password" placeholder="Password"/>
-                    <input type="number" placeholder="Admin code"/>
-                <button>Create</button>
-                <p class="message">Already Registered? <a href = "#">Login</a></p>
-    
-                </form>
-    <!-- /////////////////////////////////////////////////////////////////// -->
-                <form class="login-form">
-                    <input type="text" placeholder="Username"/>
-                    <input type="password" placeholder="Password">
-                    <button>login</button>
-                    <p class="message">Not Registered? <a href = "#">Register</a></p>
-                </form>
-            </div>
         </div>
-
-        <script src='https://code.jquery.com/jquery-3.3.1.min.js'>
-        </script>
-        
-        
-        <script>
-            $('.message a').click( function()
-            {
-                
-                $('form').animate({height: "toggle", opacity: "toggle"}, "slow")
-            })
-        </script>
-        
 	</body>
 </html>
