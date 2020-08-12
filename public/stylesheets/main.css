@@ -61,6 +61,7 @@
     color: white;
 }
 
+
 /* Comments */
 .comment{
     margin-bottom: 30px;
@@ -92,4 +93,8 @@
     padding: 0; 
     border: none;
     background: transparent;
+}
+
+.comment-buttons .delete-btn:hover{
+    text-decoration: underline;
 }

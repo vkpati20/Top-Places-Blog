@@ -14,7 +14,7 @@ middlewareObj.checkPlaceOwnership = function(req, res, next){
             }
             else{
                 //if the user is logged in and there exists a place with the url, then go to next
-                if(foundPlace.user.id.equals(req.user._id)){
+                if(foundPlace.user.id.equals(req.user._id)  || req.user.isAdmin){
                     next();
                 }
                 else{
@@ -40,7 +40,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
             }
             else{
                 //does user own the campground?
-                if(foundComment.user.id.equals(req.user._id)){
+                if(foundComment.user.id.equals(req.user._id) || req.user.isAdmin){
                     next();
                 }
                 else{

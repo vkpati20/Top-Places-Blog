@@ -18,7 +18,7 @@
                         </div>
                         <p><%=place.description%></p>
                         <!-- Only shows edit and delete buttons for the user who created the place -->
-                        <% if(currentUser && place.user.id.equals(currentUser._id)) {%>     
+                        <% if(currentUser && place.user.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) {%>     
                             <a class="btn btn-sm btn-warning" href="/places/<%=place._id%>/edit">Edit</a>  
                             <form style="display: inline; margin-left: 10px;" action="/places/<%= place._id %>?_method=DELETE" method="POST">
                                 <button class="btn btn-sm btn-danger">Delete</button>
@@ -43,7 +43,7 @@
                                 <p><%=comment.text%></p>
 
                             <!-- Only shows edit and delete buttons for the user who created the comment -->
-                                <% if(currentUser && comment.user.id.equals(currentUser._id)) {%> 
+                                <% if(currentUser && comment.user.id.equals(currentUser._id)  || currentUser && currentUser.isAdmin) {%> 
                                     <div class="comment-buttons">
                                         <a class="edit-btn" href="/places/<%=place._id%>/comments/<%=comment._id%>/edit">Edit</a>
                                         <form class="delete-form" action="/places/<%=place._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">

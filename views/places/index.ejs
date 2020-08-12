@@ -3,6 +3,9 @@
     Index route that displays all the existing places
 -->
 <%- include("../partials/header") %>
+<%if(currentUser && currentUser.isAdmin) {%>
+    <h1>You are an admin!</h1>
+<%} %>
 <div class="bar">
     <div class="container">
         <div class="content" style="padding-top: 30px;">
