@@ -125,6 +125,11 @@ router.delete("/:id", middleware.checkPlaceOwnership, (req, res)=>{
         }
         else{
             req.flash('success', 'Successfully deleted the place');
+            Comment.deleteMany({_id:{ $in: removedPlace.comments }}, (err) =>{
+                if(err){
+                    console.log("Error deleing associated comments");
+                }
+            })
             res.redirect("/places")
             //delete comments associated with it.
         }
