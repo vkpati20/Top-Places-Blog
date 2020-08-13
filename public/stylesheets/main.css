@@ -1,7 +1,7 @@
 /* For all other pages except root page */
 
 /*====================================================
-                Partials 
+                Partials Views
 ======================================================*/
 /* header.ejs */
 .error-message{
@@ -11,7 +11,7 @@
 }
 
 /*====================================================
-                Places 
+                Places Views
 ======================================================*/
 /* index.ejs */
 .bar{
@@ -95,23 +95,7 @@ figcaption form{
     display: inline; 
     margin-left: 10px;
 }
-/*====================================================
-                Comments 
-==============*========================================*/
 
-
-
-/* new.ejs */
-.title{
-    text-align: center;
-}
-.center{
-    justify-content: center;
-}
-
-
-
-/* Comments */
 .comment{
     margin-bottom: 30px;
 }
@@ -146,4 +130,17 @@ figcaption form{
 
 .comment-buttons .delete-btn:hover{
     text-decoration: underline;
+}
+/*====================================================
+                Comments  Views
+==============*========================================*/
+
+
+/* new.ejs */
+.title{
+    margin-top: 20px;
+    text-align: center;
+}
+.center{
+    justify-content: center;
 }
