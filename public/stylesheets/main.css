@@ -3,11 +3,25 @@
 /*====================================================
                 Partials 
 ======================================================*/
+/* header.ejs */
+.error-message{
+    position: absolute;
+    right: 0;
+    opacity: .8;
+}
 
 /*====================================================
                 Places 
 ======================================================*/
 /* index.ejs */
+.bar{
+    background-image: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url(great-wall.jpg);
+    background-attachment: fixed;
+    height: 200px;
+    background-position: 0;
+    color: white;
+}
+
 .bar .container .content{
     padding-top: 30px;
 }
@@ -87,13 +101,6 @@ figcaption form{
 
 
 
-/* header.ejs */
-.error-message{
-    position: absolute;
-    right: 0;
-    opacity: .8;
-}
-
 /* new.ejs */
 .title{
     text-align: center;
@@ -102,16 +109,6 @@ figcaption form{
     justify-content: center;
 }
 
-/* index.ejs    */
-
-.bar{
-    /* background-image: url('great-wall.jpg'); */
-    background-image: linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)),url(great-wall.jpg);
-    background-attachment: fixed;
-    height: 200px;
-    background-position: 0;
-    color: white;
-}
 
 
 /* Comments */
