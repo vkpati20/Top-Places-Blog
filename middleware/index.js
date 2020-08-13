@@ -3,11 +3,10 @@
 var Place = require("../models/places");
 var Comment = require("../models/comments");
 var middlewareObj = {};
-
 /*
     This middleware is used to check if the user is logged and is the owener of the place.
     If the user is an admin, it gives them access to editing, updating, and deleting places
-*/
+-*/
 middlewareObj.checkPlaceOwnership = function(req, res, next){
     //is user logged in?
     if(req.isAuthenticated()){
@@ -17,7 +16,7 @@ middlewareObj.checkPlaceOwnership = function(req, res, next){
                 res.redirect("back");
             }
             else{
-                //if the user is logged in and there exists a place with the url, then go to next.
+                //if the user is logged in and there exists a place with the url, then go to next
                 if(foundPlace.user.id.equals(req.user._id)  || req.user.isAdmin){
                     next();
                 }
@@ -39,6 +38,7 @@ middlewareObj.checkPlaceOwnership = function(req, res, next){
     If the user is an admin, it gives them access to editing, updating, and deleting comments
 */
 middlewareObj.checkCommentOwnership = function(req, res, next){
+    //is user logged in?
     if(req.isAuthenticated()){
         Comment.findById(req.params.comment_id, (err, foundComment)=>{
             if(err || !foundComment){
@@ -46,6 +46,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
                 res.redirect("back");
             }
             else{
+                //does user own the campground?
                 if(foundComment.user.id.equals(req.user._id) || req.user.isAdmin){
                     next();
                 }
