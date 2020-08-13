@@ -30,7 +30,7 @@ router.get("/register", (req, res)=>{
 //Handles sign up logic
 router.post("/register", (req, res)=>{
     var newUser = new User({username: req.body.username});
-    if(req.body.adminCode === 'secret'){
+    if(req.body.adminCode === process.env.SECRET_VAR){
         newUser.isAdmin = true;
     }
     User.register(newUser, req.body.password, (err, user)=>{
@@ -41,6 +41,9 @@ router.post("/register", (req, res)=>{
         }
         passport.authenticate("local")(req, res, ()=>{
             req.flash("success", "Welcome to the Blog " + user.username);
+            if(user.isAdmin === true){
+                req.flash("success", " You are now an admin!");
+            }
             res.redirect("/places")
         })
     })
