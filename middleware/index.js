@@ -63,6 +63,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
     }
 }
 
+
 /*
     Checks if the user is logged in before performing a task.
 */
