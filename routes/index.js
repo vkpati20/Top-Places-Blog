@@ -1,8 +1,3 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
-var User = require('../models/users');
-
 /*
 Routes:
     Get:    /               :Takes you to landing page  
@@ -14,14 +9,20 @@ Routes:
 
 */
 
+var express     = require('express');
+var router      = express.Router();
+var passport    = require('passport');
+var User        = require('../models/users');
+
 //Landing page
 router.get("/", (req, res)=>{
     res.render("landing");
 });
 
-/*
+/*====================
     Auth Routes
-*/
+======================*/
+
 //Shows register form
 router.get("/register", (req, res)=>{
     res.render("register");
@@ -49,7 +50,7 @@ router.post("/register", (req, res)=>{
     })
 })
 
-//Show login form
+//Shows login form
 router.get("/login", (req, res)=>{
     res.render("login");
 });

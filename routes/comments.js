@@ -8,14 +8,14 @@ Disclaimer: all routes here have a prefix: /places/:id/comments. Look at app.js 
     Delete: /:comment_id        :Deletes existing comment
 */
 
-var express = require('express');
-    //we send /places/:id/comments as an argument from app.use() in app.js to this file.
-    //but we will get place is null error when we add a comment. So we write: mergeParams: true
-    //This will merge the params from the places and the comments together so that we can access :id inside places
-var router = express.Router({mergeParams: true});
-var Place = require("../models/places")
-var Comment = require("../models/comments")
-var middleware = require('../middleware');
+var express     = require('express');
+    //I send /places/:id/comments as an argument from app.use() in app.js to this file.
+    //but I will get 'place is null' error when we add a comment. So we write: mergeParams: true
+    //This will merge the params from the places and the comments together so that I can access :id inside places
+var router      = express.Router({mergeParams: true});
+var Place       = require("../models/places")
+var Comment     = require("../models/comments")
+var middleware  = require('../middleware');
 
 
 /*
@@ -75,6 +75,7 @@ router.post("/", middleware.isLoggedIn, (req, res)=>{
 EDIT - route to display comment edit form
 */
 router.get("/:comment_id/edit", middleware.checkCommentOwnership, (req, res)=>{
+    //Find place using id from url params
     Place.findById(req.params.id, (err, foundPlace)=>{
         if(err || !foundPlace){
             req.flash("error", "No place found");
@@ -97,6 +98,7 @@ router.get("/:comment_id/edit", middleware.checkCommentOwnership, (req, res)=>{
 UPDATE  - route to submit comment edit form
 */
 router.put("/:comment_id", middleware.checkCommentOwnership, (req, res)=>{
+    //Find comment using comment_id from url params
     Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment){
        if(err){
             req.flash("error", "Error while updating comment");
@@ -107,7 +109,11 @@ router.put("/:comment_id", middleware.checkCommentOwnership, (req, res)=>{
     });
 });
 
+/*
+DELETE  - route to delete comment
+*/
 router.delete("/:comment_id", middleware.checkCommentOwnership, (req, res)=>{
+    //Find comment using comment_id from url params
     Comment.findByIdAndRemove(req.params.comment_id, (err)=>{
         if(err){
             req.flash("error", "Error while deleting comment");

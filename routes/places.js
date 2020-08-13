@@ -1,11 +1,3 @@
-const express = require('express'),
-      Place = require('../models/places'),
-      router = express.Router(),
-      Comment = require('../models/comments'),
-      middleware = require('../middleware');
-
-
-
 /*
 Routes:
 Disclaimer: all routes here have a prefix: /places. Look at app.js for more details
@@ -18,6 +10,13 @@ Disclaimer: all routes here have a prefix: /places. Look at app.js for more deta
     Delete: /:id        :Deletes a place   
 
 */
+
+const express       = require('express'),
+      Place         = require('../models/places'),
+      router        = express.Router(),
+      Comment       = require('../models/comments'),
+      middleware    = require('../middleware');
+
 
 /*
 INDEX - show all places
@@ -116,7 +115,9 @@ router.put("/:id", middleware.checkPlaceOwnership, (req, res)=>{
 })
 
 
-
+/*
+DELETE - Deletes the Place and all the comments associated with it
+*/
 router.delete("/:id", middleware.checkPlaceOwnership, (req, res)=>{
     Place.findByIdAndRemove(req.params.id, (err, removedPlace)=>{
         if(err){
@@ -125,13 +126,13 @@ router.delete("/:id", middleware.checkPlaceOwnership, (req, res)=>{
         }
         else{
             req.flash('success', 'Successfully deleted the place');
+            //delete comments associated with it.
             Comment.deleteMany({_id:{ $in: removedPlace.comments }}, (err) =>{
                 if(err){
                     console.log("Error deleing associated comments");
                 }
             })
             res.redirect("/places")
-            //delete comments associated with it.
         }
     })
 })

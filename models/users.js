@@ -1,10 +1,12 @@
 var mongoose = require("mongoose");
 var passportLocalMongoose = require("passport-local-mongoose");
 /*
-    Defining Mongoose schema for comments
-    Each Comment contains:
-        - text (String)
-        - author (linked using author's mongoose id)
+    Defining Mongoose schema for Users
+    Each User contains:
+        - username
+        - passowrd
+        - isAdmin (default: false)
+        
 
 */
 
