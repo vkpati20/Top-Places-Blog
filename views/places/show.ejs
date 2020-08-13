@@ -7,20 +7,20 @@
 <div class="container">
     <div class="row">
         <div class="col-md-9">
-            <a href="/places" style="position: absolute; margin: 15px auto">Back</a>
-            <div class="card" style="margin: 45px auto">
+            <a href="/places" class="back-link">Back</a>
+            <div class="card">
                 <img class="figure-img img-fluid" src="<%=place.displayImage%>" alt="<%=place.location%>">
                 <figcaption class="figure-caption">
-                    <div class="container" style="margin-bottom: 10px">
-                        <div style="display: flex; justify-content: space-between;">
+                    <div class="container">
+                        <div class="usr-info">
                             <h4><%=place.location%></h4>
-                            <p style="line-height: 1rem;"><em>Submitted by: <%=place.user.username%></em>, 10 days ago</p>
+                            <p><em>Submitted by: <%=place.user.username%></em>, 10 days ago</p>
                         </div>
                         <p><%=place.description%></p>
                         <!-- Only shows edit and delete buttons for the user who created the place -->
                         <% if(currentUser && place.user.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) {%>     
                             <a class="btn btn-sm btn-warning" href="/places/<%=place._id%>/edit">Edit</a>  
-                            <form style="display: inline; margin-left: 10px;" action="/places/<%= place._id %>?_method=DELETE" method="POST">
+                            <form action="/places/<%= place._id %>?_method=DELETE" method="POST">
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </form>    
                         <%}%>     
